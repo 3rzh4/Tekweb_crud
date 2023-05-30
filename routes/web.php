@@ -19,3 +19,5 @@ route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\Main\ViewController::class, 'dashboard']);
+
+Route::get('/pasien', [App\Http\Controllers\Main\ViewController::class, 'pasien']);
