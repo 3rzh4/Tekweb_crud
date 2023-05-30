@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\ObatController;
+use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +24,46 @@ Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\Main\ViewController::class, 'dashboard']);
 
-Route::get('/pasien', [App\Http\Controllers\Main\ViewController::class, 'pasien']);
+Route::prefix('pasien')->group(function () {
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'pasien']);
+
+    Route::controller(PasienController::class)->group(function () {
+        Route::get('/edit', 'show');
+        Route::put('/update', 'update');
+        Route::post('/create', 'create');
+    });
+
+});
+
+Route::prefix('doktor')->group(function () {
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'doktor']);
+
+    Route::controller(DokterController::class)->group(function () {
+        Route::get('/edit', 'show');
+        Route::put('/update', 'update');
+        Route::post('/create', 'create');
+    });
+
+});
+
+Route::prefix('obat')->group(function () {
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'obat']);
+
+    Route::controller(ObatController::class)->group(function () {
+        Route::get('/edit', 'show');
+        Route::put('/update', 'update');
+        Route::post('/create', 'create');
+    });
+
+});
+
+Route::prefix('pembayaran')->group(function () {
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'pasien']);
+
+    Route::controller(PembayaranController::class)->group(function () {
+        Route::get('/edit', 'show');
+        Route::put('/update', 'update');
+        Route::post('/create', 'create');
+    });
+
+});
