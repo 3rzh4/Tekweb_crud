@@ -16,7 +16,7 @@ class CreatePembayaransTable extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id('id_pembayaran');
             $table->string('id_pasien');
-            $table->int('harga');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

@@ -96,7 +96,7 @@
                     <div class="row">
         
                     <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-11">
+                    <div class="col-xl-8 col-lg-7">
                         <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -113,12 +113,33 @@
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <canvas id="myChart" width="600" height="200"></canvas>
+                            <canvas id="myChart"></canvas>
                         </div>
                         </div>
                     </div>
-                    </div>
-    
+                        <div class="col-xl-4 col-lg-3">
+                            <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Chart Ruangan</h6>
+                                <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Chart Ruangan</div>
+                                    <a class="dropdown-item" href="#">Lihat Data</a>
+                                </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <canvas id="ruangan" width="400" height="200"></canvas>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-xl-8 col-lg-7">
@@ -178,6 +199,8 @@
         var labels_pembayaran =  {{ Js::from($labels_pembayaran) }};
         var pasien =  {{ Js::from($data_pasien) }};
         var pembayaran =  {{ Js::from($data_pembayaran) }};
+        var ruangan =  {{ Js::from($data_ruang) }};
+        var ruangan_used =  {{ Js::from($data_ruang_used) }};
     
         const dataPasien = {
             labels: labels_pasien,
@@ -195,6 +218,21 @@
                 backgroundColor: 'rgb(25, 135, 84)',
                 borderColor: 'rgb(25, 135, 84)',
                 data: pembayaran,
+            }]
+        };
+
+        const dataruangan = {
+            labels: [
+                'Ruang Kosong',
+                'Ruang terisi',
+            ],
+            datasets: [{
+                label: 'Ruangan',
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                ],
+                data: [ruangan,ruangan_used],
             }]
         };
     
@@ -221,6 +259,17 @@
             }
             }
         };
+        const configRuangan = {
+            type: 'doughnut',
+            data: dataruangan,
+            options: {
+                scale:{
+                y: {
+                    beginAtZero:true
+                }
+            }
+            }
+        };
     
         const pasienChart = new Chart(
             document.getElementById('myChart'),
@@ -229,6 +278,10 @@
         const pembayaranChart = new Chart(
             document.getElementById('pendapatan'),
             configPembayaran
+        );
+        const ruanganChart = new Chart(
+            document.getElementById('ruangan'),
+            configRuangan
         );
     
     </script>

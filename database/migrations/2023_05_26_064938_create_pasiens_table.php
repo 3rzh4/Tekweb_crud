@@ -19,7 +19,7 @@ class CreatePasiensTable extends Migration
             $table->string('alamat_pasien');
             $table->string('umur');
             $table->string('keluhan');
-            $table->int('is_done');
+            $table->integer('is_done');
             $table->timestamps();
         });
     }

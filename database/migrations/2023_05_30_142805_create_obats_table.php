@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRuangsTable extends Migration
+class CreateObatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateRuangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ruangs', function (Blueprint $table) {
-            $table->id('id_ruang');
-            $table->string('nama_ruang');
-            $table->integer('is_used');
+        Schema::create('obats', function (Blueprint $table) {
+            $table->id('id_obat');
+            $table->string('nama_obat');
+            $table->string('Desc');
+            $table->integer('stok');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateRuangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ruangs');
+        Schema::dropIfExists('obats');
     }
 }
