@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class inap extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_ruang',
+        'id_pasien',
+    ];
 }
