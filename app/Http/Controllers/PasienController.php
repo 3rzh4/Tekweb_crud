@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\pasien;
+use GuzzleHttp\Psr7\Message;
+use Illuminate\Http\Request;
 
 class PasienController extends Controller
 {
@@ -13,7 +15,7 @@ class PasienController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -21,9 +23,15 @@ class PasienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama_pasien' => 'required',
+            'alamat_pasien' => 'required',
+            'umur' => 'required|numeric',
+        ]);
+        pasien::create($request->all());
+        return redirect('/pasien')->with('success', 'Pasien berhasil ditambah');
     }
     public function store()
     {
@@ -36,9 +44,10 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function show(pasien $pasien)
+    public function show($id)
     {
-        //
+        $data=pasien::where('id',$id)->first();
+        return view('admin/pasien/update',compact('data'));
     }
 
     /**
@@ -51,9 +60,26 @@ class PasienController extends Controller
     {
         //
     }
-    public function update()
+    public function update(Request $request,$id)
     {
-        //
+        $this->validate($request, [
+            'nama_pasien' => 'required',
+            'alamat_pasien' => 'required',
+            'umur' => 'required|numeric',
+        ]);
+        pasien::where('id',$id)->update(
+            [
+                'nama_pasien'=>$request->nama_pasien,
+                'alamat_pasien'=>$request->alamat_pasien,
+                'umur'=>$request->umur
+            ]
+        );
+        return redirect('/pasien')->with('success', 'Pasien berhasil diupdate');
+    }
+
+    public function add()
+    {
+        return view('admin/pasien/tambah');
     }
 
     /**
@@ -62,8 +88,9 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pasien $pasien)
+    public function destroy($id)
     {
-        //
+        pasien::where('id_pasien',$id)->delete();
+        return redirect('/pasien')->with('success','Data berhasil dihapus');
     }
 }

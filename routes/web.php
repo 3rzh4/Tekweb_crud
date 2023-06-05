@@ -22,14 +22,16 @@ use Illuminate\Support\Facades\Auth;
 route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\Main\ViewController::class, 'dashboard']);
+Route::get('/dashboard', [App\Http\Controllers\Main\ViewController::class, 'dashboard'])->name('dashboard');
 
 Route::prefix('pasien')->group(function () {
-    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'pasien']);
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'pasien'])->name('pasien');
 
     Route::controller(PasienController::class)->group(function () {
-        Route::get('/edit', 'show');
-        Route::put('/update', 'update');
+        Route::get('/tambah', 'add');
+        Route::get('/edit/{id}', 'show');
+        Route::delete('/delete/{id}', 'destroy');
+        Route::put('/update/{id}', 'update');
         Route::post('/create', 'create');
     });
 
@@ -40,7 +42,7 @@ Route::prefix('doktor')->group(function () {
 
     Route::controller(DokterController::class)->group(function () {
         Route::get('/edit', 'show');
-        Route::put('/update', 'update');
+        Route::put('/update/{id}', 'update');
         Route::post('/create', 'create');
     });
 

@@ -40,4 +40,13 @@ class ViewController extends Controller
         $data_ruang_used    = $ruang_used->values();
         return view('admin/dashboard',compact('labels_pasien','labels_pembayaran', 'data_pasien','data_pembayaran','data_ruang','data_ruang_used'));
     }
+
+    public function pasien(){
+        $data= pasien::latest();
+        if (request('search')) {
+            $data->where('nama_pasien','like','%'.request('search').'%');
+        }
+
+        return view('admin/pasien/index',['data'=>$data->paginate(15)]);
+    }
 }

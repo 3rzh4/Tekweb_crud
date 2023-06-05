@@ -14,7 +14,7 @@ class CreateInapsTable extends Migration
     public function up()
     {
         Schema::create('inaps', function (Blueprint $table) {
-            $table->id('id_enap');
+            $table->id();
             $table->string('id_ruang');
             $table->string('id_pasien');
             $table->timestamps();

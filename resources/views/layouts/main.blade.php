@@ -40,12 +40,8 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        @if (Route::has('dashboard'))
-        <li class="nav-item active">
-            @else
-            <li class="nav-item active">
-                @endif
-            <a class="nav-link" href="index.html">
+            <li class="nav-item {{ (request()->is('dashboard*')) ? 'active' : '' }}">
+            <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
         </li>
@@ -59,19 +55,10 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Data</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Pasien</a>
-                <a class="collapse-item" href="cards.html">Dokter</a>
-                <a class="collapse-item" href="cards.html">Obat</a>
-                <a class="collapse-item" href="cards.html">Pembayaran</a>
-            </div>
-            </div>
+            <li class="nav-item {{ (request()->is('pasien*')) ? 'active' : '' }}">
+            <a class="nav-link" href="/pasien">
+                <i class="fa-solid fa-person"></i>
+            <span>Pasien</span>
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
@@ -182,6 +169,7 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+    <script src="https://kit.fontawesome.com/ad57a53b88.js" crossorigin="anonymous"></script>
 
     </body>
 
