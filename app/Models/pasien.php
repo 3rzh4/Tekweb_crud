@@ -13,4 +13,10 @@ class pasien extends Model
         'alamat_pasien',
         'umur',
     ];
+    
+
+    public function pembayaran(){
+        return $this->hasOne(pembayaran::class,'pasien_id');
+    }
+
 }

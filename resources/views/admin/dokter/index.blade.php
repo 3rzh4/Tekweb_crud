@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Pasien</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Dokter</h1>
     </div>
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
@@ -26,7 +26,7 @@
             @csrf
                 <input type="text" class="form-control mb-2" placeholder="Search Data" name="search">
             </form>
-            <a href="/pasien/tambah" class="btn btn-primary">Tambah pasien</a>
+            <a href="/dokter/tambah" class="btn btn-primary">Tambah Dokter</a>
         </div>
         <div class="card-body">
         <div class="table-responsive">          
@@ -40,6 +40,7 @@
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Umur</th>
+                    <th>Keahlian</th>
                     <th>Action</th>
                     </tr>
                 </thead>
@@ -50,12 +51,13 @@
                 @endphp
                     <tr>
                         <td>{{$count}}</td>
-                        <td>{{$d->nama_pasien}}</td>
-                        <td>{{$d->alamat_pasien}}</td>
+                        <td>{{$d->nama_doktor}}</td>
+                        <td>{{$d->alamat_doktor}}</td>
                         <td>{{$d->umur}}</td>
+                        <td>{{$d->Keahlian}}</td>
                         <td><div class="row">
-                            <a href="/pasien/edit/{{$d->id}}" class="btn btn-success ml-2 mr-2">Edit</a>
-                            <form action="/pasien/delete/{{$d->id}}" method="post">
+                            <a href="/dokter/edit/{{$d->id}}" class="btn btn-success ml-2 mr-2">Edit</a>
+                            <form action="/dokter/delete/{{$d->id}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apa kamu yakin?');">Hapus</button>
@@ -66,6 +68,7 @@
                 </tbody>
                 @endforeach
             </table>
+    
             </div>
         </div>
         </div>

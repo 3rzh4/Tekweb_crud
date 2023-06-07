@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class PasienController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -90,7 +95,7 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
-        pasien::where('id_pasien',$id)->delete();
+        pasien::where('id',$id)->delete();
         return redirect('/pasien')->with('success','Data berhasil dihapus');
     }
 }

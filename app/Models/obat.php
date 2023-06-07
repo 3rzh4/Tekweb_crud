@@ -15,4 +15,12 @@ class obat extends Model
         'stok',
         'harga',
     ];
+    protected $casts = [
+        'harga' => 'integer',
+    ];
+
+    public function orderobat()
+    {
+        return $this->hasMany(orderObat::class, 'obat_id');
+    }
 }

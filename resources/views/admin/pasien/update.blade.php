@@ -26,7 +26,12 @@
                     Nama 
                 </label>
                 <div class="col-sm-11">
-                    <input type="text" name="nama_pasien" class="form-control" id="nama" value="{{$data->nama_pasien}}">
+                    <input type="text" name="nama_pasien" class="form-control @error('nama_pasien') is-invalid @enderror" id="nama" value="{{$data->nama_pasien}}">
+                                @error('nama_pasien')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                 </div>
                 </div>
                 <div class="form-group row">
@@ -34,7 +39,12 @@
                         Alamat 
                     </label>
                     <div class="col-sm-11">
-                        <input type="text" name="alamat_pasien" class="form-control" id="alamat" value="{{$data->alamat_pasien}}">
+                        <input type="text" name="alamat_pasien" class="form-control @error('alamat_pasien') is-invalid @enderror" id="alamat" value="{{$data->alamat_pasien}}">
+                        @error('alamat_pasien')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                     </div>
                 </div>
                 <div class="form-group row">
@@ -42,7 +52,12 @@
                         Umur 
                     </label>
                     <div class="col-sm-11">
-                        <input type="number" name="umur" class="form-control" id="umur" value="{{$data->umur}}">
+                        <input type="number" name="umur" class="form-control @error('umur') is-invalid @enderror" id="umur" value="{{$data->umur}}">
+                        @error('umur')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Ubah</button>

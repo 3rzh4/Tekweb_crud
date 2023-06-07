@@ -37,11 +37,13 @@ Route::prefix('pasien')->group(function () {
 
 });
 
-Route::prefix('doktor')->group(function () {
-    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'doktor']);
+Route::prefix('dokter')->group(function () {
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'dokter']);
 
     Route::controller(DokterController::class)->group(function () {
-        Route::get('/edit', 'show');
+        Route::get('/tambah', 'add');
+        Route::get('/edit/{id}', 'show');
+        Route::delete('/delete/{id}', 'destroy');
         Route::put('/update/{id}', 'update');
         Route::post('/create', 'create');
     });
@@ -52,20 +54,24 @@ Route::prefix('obat')->group(function () {
     Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'obat']);
 
     Route::controller(ObatController::class)->group(function () {
-        Route::get('/edit', 'show');
-        Route::put('/update', 'update');
+        Route::get('/tambah', 'add');
+        Route::get('/edit/{id}', 'show');
+        Route::delete('/delete/{id}', 'destroy');
+        Route::put('/update/{id}', 'update');
         Route::post('/create', 'create');
     });
 
 });
 
-Route::prefix('pembayaran')->group(function () {
-    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'pasien']);
+Route::prefix('tagihan')->group(function () {
+    Route::get('/', [App\Http\Controllers\Main\ViewController::class, 'tagihan']);
 
     Route::controller(PembayaranController::class)->group(function () {
-        Route::get('/edit', 'show');
-        Route::put('/update', 'update');
-        Route::post('/create', 'create');
+        Route::get('/tambah', 'add');
+        Route::get('/edit/{id}', 'show');
+        Route::delete('/delete/{id}', 'destroy');
+        Route::put('/update/{id}', 'update');
+        Route::post('/create', 'store');
     });
 
 });

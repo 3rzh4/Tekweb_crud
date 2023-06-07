@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Pasien</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Obat</h1>
     </div>
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
@@ -22,11 +22,11 @@
 @endif
 <div class="card">
     <div class="card-header">
-        <form action="/pasien" method="get">
+        <form action="/obat" method="get">
             @csrf
                 <input type="text" class="form-control mb-2" placeholder="Search Data" name="search">
             </form>
-            <a href="/pasien/tambah" class="btn btn-primary">Tambah pasien</a>
+            <a href="/obat/tambah" class="btn btn-primary">Tambah Obat</a>
         </div>
         <div class="card-body">
         <div class="table-responsive">          
@@ -36,11 +36,12 @@
             @endphp
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>Umur</th>
-                    <th>Action</th>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 10%">Nama Obat</th>
+                    <th style="width: 50%">Deskripsi</th>
+                    <th style="width: 10%">Harga</th>
+                    <th style="width: 5%">Stok</th>
+                    <th style="width: 20%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,12 +51,13 @@
                 @endphp
                     <tr>
                         <td>{{$count}}</td>
-                        <td>{{$d->nama_pasien}}</td>
-                        <td>{{$d->alamat_pasien}}</td>
-                        <td>{{$d->umur}}</td>
+                        <td>{{$d->nama_obat}}</td>
+                        <td>{{$d->Desc}}</td>
+                        <td>{{$d->harga}}</td>
+                        <td>{{$d->stok}}</td>
                         <td><div class="row">
-                            <a href="/pasien/edit/{{$d->id}}" class="btn btn-success ml-2 mr-2">Edit</a>
-                            <form action="/pasien/delete/{{$d->id}}" method="post">
+                            <a href="/obat/edit/{{$d->id}}" class="btn btn-success ml-2 mr-2">Edit</a>
+                            <form action="/obat/delete/{{$d->id}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apa kamu yakin?');">Hapus</button>
@@ -66,6 +68,7 @@
                 </tbody>
                 @endforeach
             </table>
+    
             </div>
         </div>
         </div>

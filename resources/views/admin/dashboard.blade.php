@@ -7,7 +7,6 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
         
                     <!-- Content Row -->
@@ -29,7 +28,6 @@
                         </div>
                         </div>
                     </div>
-        
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-success shadow h-100 py-2">
@@ -46,7 +44,6 @@
                         </div>
                         </div>
                     </div>
-        
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-info shadow h-100 py-2">
@@ -96,7 +93,7 @@
                     <div class="row">
         
                     <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
+                    <div class="col-xl-10 col-lg-9">
                         <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -107,7 +104,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                 <div class="dropdown-header">Chart Pasien</div>
-                                <a class="dropdown-item" href="#">Lihat Data</a>
+                                <a class="dropdown-item" href="/pasien">Lihat Data</a>
                             </div>
                             </div>
                         </div>
@@ -117,32 +114,7 @@
                         </div>
                         </div>
                     </div>
-                        <div class="col-xl-4 col-lg-3">
-                            <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Chart Ruangan</h6>
-                                <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                    <div class="dropdown-header">Chart Ruangan</div>
-                                    <a class="dropdown-item" href="#">Lihat Data</a>
-                                </div>
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <canvas id="ruangan" width="400" height="200"></canvas>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-10 col-lg-9">
                             <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -153,7 +125,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Chart Pendapatan</div>
-                                    <a class="dropdown-item" href="#">Lihat Data</a>
+                                    <a class="dropdown-item" href="/tagihan">Lihat Data</a>
                                 </div>
                                 </div>
                             </div>
@@ -199,9 +171,7 @@
         var labels_pembayaran =  {{ Js::from($labels_pembayaran) }};
         var pasien =  {{ Js::from($data_pasien) }};
         var pembayaran =  {{ Js::from($data_pembayaran) }};
-        var ruangan =  {{ Js::from($data_ruang) }};
-        var ruangan_used =  {{ Js::from($data_ruang_used) }};
-    
+
         const dataPasien = {
             labels: labels_pasien,
             datasets: [{
@@ -218,21 +188,6 @@
                 backgroundColor: 'rgb(25, 135, 84)',
                 borderColor: 'rgb(25, 135, 84)',
                 data: pembayaran,
-            }]
-        };
-
-        const dataruangan = {
-            labels: [
-                'Ruang Kosong',
-                'Ruang terisi',
-            ],
-            datasets: [{
-                label: 'Ruangan',
-                backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                ],
-                data: [ruangan,ruangan_used],
             }]
         };
     
@@ -259,17 +214,6 @@
             }
             }
         };
-        const configRuangan = {
-            type: 'doughnut',
-            data: dataruangan,
-            options: {
-                scale:{
-                y: {
-                    beginAtZero:true
-                }
-            }
-            }
-        };
     
         const pasienChart = new Chart(
             document.getElementById('myChart'),
@@ -279,10 +223,5 @@
             document.getElementById('pendapatan'),
             configPembayaran
         );
-        const ruanganChart = new Chart(
-            document.getElementById('ruangan'),
-            configRuangan
-        );
-    
     </script>
         @endsection

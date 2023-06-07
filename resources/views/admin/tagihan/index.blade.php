@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Pasien</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data tagihan</h1>
     </div>
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
@@ -22,11 +22,11 @@
 @endif
 <div class="card">
     <div class="card-header">
-        <form action="/pasien" method="get">
+        <form action="/tagihan" method="get">
             @csrf
                 <input type="text" class="form-control mb-2" placeholder="Search Data" name="search">
             </form>
-            <a href="/pasien/tambah" class="btn btn-primary">Tambah pasien</a>
+            <a href="/tagihan/tambah" class="btn btn-primary">Tambah tagihan</a>
         </div>
         <div class="card-body">
         <div class="table-responsive">          
@@ -39,7 +39,10 @@
                     <th>#</th>
                     <th>Nama</th>
                     <th>Alamat</th>
-                    <th>Umur</th>
+                    <th>Obat</th>
+                    <th>Tagihan</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
                     <th>Action</th>
                     </tr>
                 </thead>
@@ -50,22 +53,41 @@
                 @endphp
                     <tr>
                         <td>{{$count}}</td>
-                        <td>{{$d->nama_pasien}}</td>
-                        <td>{{$d->alamat_pasien}}</td>
-                        <td>{{$d->umur}}</td>
+                        
+                        <td>{{$d->pasien->nama_pasien}}</td>
+                        <td>{{$d->pasien->alamat_pasien}}</td>
+                        <td>
+                            @foreach ($d->obat as $item)
+                            <li>{{$item->nama_obat}}</li>
+                            @endforeach
+                        </td>
+                        <td>{{$d->harga}}</td>
+                        <td>{{$d->created_at->format('Y-m-d')}}</td>
+                        <td>
+                            @if ($d->status == 1)
+                            <a class="btn btn-success" style="color:white;">Lunas</a>
+                            @else
+                            <a class="btn btn-danger" style="color:white;">Belum Bayar</a>
+                            @endif
+                        </td>
                         <td><div class="row">
-                            <a href="/pasien/edit/{{$d->id}}" class="btn btn-success ml-2 mr-2">Edit</a>
-                            <form action="/pasien/delete/{{$d->id}}" method="post">
+                            <form action="/tagihan/update/{{$d->id}}" method="post">
+                                @csrf
+                                @method('Put')
+                                <button type="submit" class="btn btn-secondary mb-1" onclick="return confirm('apa kamu yakin?');">Bayar</button>
+                            </form>
+                            <form action="/tagihan/delete/{{$d->id}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apa kamu yakin?');">Hapus</button>
                             </form>
                         </div>
-                        </td>
+                    </td>
                     </tr>
                 </tbody>
                 @endforeach
             </table>
+    
             </div>
         </div>
         </div>

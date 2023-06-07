@@ -10,7 +10,22 @@ class pembayaran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_pasien',
+        'pasien_id',
         'harga',
+        'status'
     ];
+    protected $casts = [
+        'harga' => 'integer',
+        'pasien_id'=>'integer'
+    ];
+    protected $dates = ['created_at'];
+
+    public function pasien()
+    {
+        return $this->belongsTo(pasien::class);
+    }
+    public function obat()
+    {
+        return $this->belongsToMany(obat::class, 'order_obats');
+    }
 }
