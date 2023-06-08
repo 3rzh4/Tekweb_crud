@@ -26,6 +26,6 @@ class pembayaran extends Model
     }
     public function obat()
     {
-        return $this->belongsToMany(obat::class, 'order_obats');
+        return $this->belongsToMany(obat::class, 'order_obats')->withPivot('quantity');
     }
 }
