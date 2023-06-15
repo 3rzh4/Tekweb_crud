@@ -41,8 +41,8 @@
           <hr class="sidebar-divider my-0">
     
           <!-- Nav Item - Dashboard -->
-          <li class="nav-item {{ (request()->is('admin')) ? 'active' : '' }}">
-            <a class="nav-link" href="/admin">
+          <li class="nav-item {{ (request()->is('dashboard')) ? 'active' : '' }}">
+            <a class="nav-link" href="/dashboard">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span></a>
           </li>
