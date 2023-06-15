@@ -36,15 +36,33 @@ class PembayaranController extends Controller
         $this->setHarga($countProd);
         return redirect('/tagihan');
     }
-    public function setHarga($countProd){
-        $id=pembayaran::latest()->first()->id;
-        $getObat=orderObat::where('pembayaran_id',$id)->first()->obat_id;
-        $getquantity=orderObat::where('pembayaran_id',$id)->first()->quantity;
-        $getHarga =  obat::where('id',$getObat)->first()->harga;
-        $total=pembayaran::where('id',$id)->update([
-            'harga'=> $getHarga * $getquantity + 50000
-        ]);
+    public function setHarga($countProd)
+{
+    $id = pembayaran::latest()->first()->id;
+
+    $orderObats = orderObat::where('pembayaran_id', $id)->get();
+
+    $totalPrice = 0;
+
+    foreach ($orderObats as $orderObat) {
+        $obatId = $orderObat->obat_id;
+        $quantity = $orderObat->quantity;
+
+        $stok = obat::where('id', $obatId)->first()->stok;
+        obat::where('id', $obatId)->update(['stok' => $stok - $quantity]);
+
+        $harga = obat::where('id', $obatId)->first()->harga;
+
+        $totalPrice += ($harga * $quantity);
     }
+
+    // Add additional charges, e.g., 50000
+    $totalPrice += 50000;
+
+    pembayaran::where('id', $id)->update([
+        'harga' => $totalPrice
+    ]);
+}
     public function update($id){
         pembayaran::where('id',$id)->update(['status'=>1]);
         return redirect('/tagihan')->with('success', 'Tagihan telah success bayar');

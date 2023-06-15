@@ -65,7 +65,11 @@ class ViewController extends Controller
     }
 
     public function tagihan(){
-        $data= pembayaran::with('pasien');
+        $data= pembayaran::with('pasien')->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                  ->from('pasiens')
+                  ->whereColumn('pembayarans.pasien_id', 'pasiens.id');
+        });
         if (request('search')) {
             $search = request('search');
             $data->whereHas('pasien',function ($query) use ($search){

@@ -44,12 +44,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (isset($data))
+                        
                     @foreach ($data as $d)
                     @php
                 $count++
                 @endphp
                     <tr>
-                        <td>{{$count}}</td>
+                        <td>{{$count }}</td>
                         <td>{{$d->nama_pasien}}</td>
                         <td>{{$d->alamat_pasien}}</td>
                         <td>{{$d->umur}}</td>
@@ -61,10 +63,11 @@
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apa kamu yakin?');">Hapus</button>
                             </form>
                         </div>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+            @endif
             </table>
             </div>
         </div>
