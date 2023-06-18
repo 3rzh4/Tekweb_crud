@@ -9,7 +9,7 @@
     </div>
         @if ($message = Session::get('warning'))
         <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
 @endif
@@ -22,7 +22,7 @@
                 @csrf
                 <div class="form-group row">
                 <label for="nama" class="col-sm-1 col-form-label">
-                    Nama 
+                    Nama
                 </label>
                 <div class="col-sm-11">
                     <select name="pasien_id" id="" class="form-control selectpicker" aria-placeholder="Nama Pasien">
@@ -36,13 +36,13 @@
                     <div class="card-body">
                         <div class="card">
                             <div class="card-header">
-                                Obat
+                                Barang
                             </div>
                             <div class="card-body">
                                 <table class="table" id="products_table">
                                     <thead>
                                         <tr>
-                                            <th>Obat</th>
+                                            <th>Barang</th>
                                             <th>Quantity</th>
                                         </tr>
                                     </thead>
@@ -65,7 +65,7 @@
                                         <tr id="product1"></tr>
                                     </tbody>
                                 </table>
-                    
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a id="add_row" class="btn btn-info pull-left">+ Add Row</a>

@@ -5,18 +5,18 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Obat</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Stok Barang</h1>
     </div>
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>{{ $message }}</strong>
         </div>
         @endif
-        
+
         @if ($message = Session::get('warning'))
         <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
     <strong>{{ $message }}</strong>
         </div>
 @endif
@@ -26,10 +26,10 @@
             @csrf
                 <input type="text" class="form-control mb-2" placeholder="Search Data" name="search">
             </form>
-            <a href="/obat/tambah" class="btn btn-primary">Tambah Obat</a>
+            <a href="/obat/tambah" class="btn btn-primary">Tambah Barang</a>
         </div>
         <div class="card-body">
-        <div class="table-responsive">          
+        <div class="table-responsive">
             <table class="table table-bordered">
                 @php
             $count = 0
@@ -37,7 +37,7 @@
             <thead>
                 <tr>
                     <th style="width: 5%">#</th>
-                    <th style="width: 10%">Nama Obat</th>
+                    <th style="width: 10%">Nama Barang</th>
                     <th style="width: 50%">Deskripsi</th>
                     <th style="width: 10%">Harga</th>
                     <th style="width: 5%">Stok</th>
@@ -68,7 +68,7 @@
                 </tbody>
                 @endforeach
             </table>
-    
+
             </div>
         </div>
         </div>

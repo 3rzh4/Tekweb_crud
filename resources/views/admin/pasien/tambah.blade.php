@@ -5,24 +5,24 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><a href="/pasien" style="color: inherit;text-decoration:none;"> Data Pasien </a>/ Tambah</h1>
+        <h1 class="h3 mb-0 text-gray-800"><a href="/pasien" style="color: inherit;text-decoration:none;"> Data Pelanggan </a>/ Tambah</h1>
     </div>
         @if ($message = Session::get('warning'))
         <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
 @endif
 <div class="card">
     <div class="card-header">
-        Tambah Data Pasien
+        Tambah Data Pelanggan
     </div>
         <div class="card-body">
             <form action="/pasien/create" method="post">
                 @csrf
                 <div class="form-group row">
                 <label for="nama" class="col-sm-1 col-form-label">
-                    Nama 
+                    Nama
                 </label>
                 <div class="col-sm-11">
                     <input type="text" name="nama_pasien" class="form-control @error('nama_pasien') is-invalid @enderror" id="nama">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="alamat" class="col-sm-1 col-form-label">
-                        Alamat 
+                        Alamat
                     </label>
                     <div class="col-sm-11">
                         <input type="text" name="alamat_pasien" class="form-control  @error('alamat_pasien') is-invalid @enderror" id="alamat">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="umur" class="col-sm-1 col-form-label">
-                        Umur 
+                        Umur
                     </label>
                     <div class="col-sm-11">
                         <input type="number" name="umur" class="form-control  @error('umur') is-invalid @enderror" id="umur">

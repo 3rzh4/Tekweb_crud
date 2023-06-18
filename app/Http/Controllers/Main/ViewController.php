@@ -40,7 +40,9 @@ class ViewController extends Controller
     public function pasien(){
         $data= pasien::latest();
         if (request('search')) {
-            $data->where('nama_pasien','like','%'.request('search').'%');
+            $data->where('nama_pasien','like','%'.request('search').'%')
+            ->orWhere('alamat_pasien','like','%'.request('search').'%')
+            ->orWhere('umur','like','%'.request('search').'%');
         }
 
         return view('admin/pasien/index',['data'=>$data->paginate(15)]);
@@ -49,7 +51,9 @@ class ViewController extends Controller
     public function dokter(){
         $data= dokter::latest();
         if (request('search')) {
-            $data->where('nama_pasien','like','%'.request('search').'%');
+            $data->where('nama_doktor','like','%'.request('search').'%')
+            ->orWhere('alamat_doktor','like','%'.request('search').'%')
+            ->orWhere('umur','like','%'.request('search').'%');
         }
 
         return view('admin/dokter/index',['data'=>$data->paginate(15)]);

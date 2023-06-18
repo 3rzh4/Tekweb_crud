@@ -5,24 +5,24 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><a href="/obat" style="color: inherit;text-decoration:none;"> Data Obat </a>/ Tambah</h1>
+        <h1 class="h3 mb-0 text-gray-800"><a href="/obat" style="color: inherit;text-decoration:none;"> Data Stok Barang </a>/ Tambah</h1>
     </div>
         @if ($message = Session::get('warning'))
         <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
 @endif
 <div class="card">
     <div class="card-header">
-        Tambah Data Obat
+        Tambah Data Barang
     </div>
         <div class="card-body">
             <form action="/obat/create" method="post">
                 @csrf
                 <div class="form-group row">
                 <label for="nama" class="col-sm-2 col-form-label">
-                    Nama Obat
+                    Nama Barang
                 </label>
                 <div class="col-sm-10">
                     <input type="text" name="nama_obat" class="form-control @error('nama_obat') is-invalid @enderror" id="nama">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="stok" class="col-sm-2 col-form-label">
-                        Stok 
+                        Stok
                     </label>
                     <div class="col-sm-10">
                         <input type="text" name="stok" class="form-control  @error('stok') is-invalid @enderror" id="stok">

@@ -9,14 +9,14 @@
     </div>
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>{{ $message }}</strong>
         </div>
         @endif
-        
+
         @if ($message = Session::get('warning'))
         <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <button type="button" class="close" data-dismiss="alert">×</button>
     <strong>{{ $message }}</strong>
         </div>
 @endif
@@ -29,7 +29,7 @@
             <a href="/tagihan/tambah" class="btn btn-primary">Tambah tagihan</a>
         </div>
         <div class="card-body">
-        <div class="table-responsive">          
+        <div class="table-responsive">
             <table class="table table-bordered">
                 @php
             $count = 0
@@ -39,7 +39,7 @@
                     <th>#</th>
                     <th>Nama</th>
                     <th>Alamat</th>
-                    <th>Obat</th>
+                    <th>Barang</th>
                     <th>Tagihan</th>
                     <th>Tanggal</th>
                     <th>Status</th>
@@ -53,7 +53,7 @@
                 @endphp
                     <tr>
                         <td>{{$count}}</td>
-                        
+
                         <td>{{$d->pasien->nama_pasien}}</td>
                         <td>{{$d->pasien->alamat_pasien}}</td>
                         <td>
@@ -87,7 +87,7 @@
                 </tbody>
                 @endforeach
             </table>
-    
+
             </div>
         </div>
         </div>
